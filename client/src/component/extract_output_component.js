@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import aiIcon from '../assets/ai.png';
+import { toast } from 'react-toastify';
 
 function ExtractOutput({ output, setSummary, setLoadingSummary }) {
   const [len, setLen] = useState('');
@@ -8,7 +9,7 @@ function ExtractOutput({ output, setSummary, setLoadingSummary }) {
 
   const genrateSmartSummary = async () => {
     try {
-      console.log('Generating summary');
+      toast.info('Generating summary');
       setLoadingSummary(true);
       const response = await axios.post('http://localhost:5000/api/v2/getsummary', {
         text: output,
@@ -16,12 +17,15 @@ function ExtractOutput({ output, setSummary, setLoadingSummary }) {
       });
 
       if (response.data && response.data.summary) {
+        toast.success('Summary generated successfully');
         console.log('Summary response:', response.data.summary);
         setSummary(response.data.summary);
       } else {
+        toast.error('Failed to generate summary');
         console.error('Summary not found in response:', response.data);
       }
     } catch (error) {
+      toast.error('Failed to generate summary');
       console.error('Error generating summary:', error);
     } finally{
       setLoadingSummary(false);

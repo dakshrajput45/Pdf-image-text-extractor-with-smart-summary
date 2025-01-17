@@ -3,6 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import { useState } from 'react';
 import langData from '../data/language_data';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function ImageExtractOcr({ setOutput }) {
   const [loading, setLoading] = useState(false);
@@ -11,6 +12,7 @@ function ImageExtractOcr({ setOutput }) {
   const extractText = async (file) => {
     try {
       setLoading(true);
+      toast.info('Extracting Text');
       const formData = new FormData();
       formData.append('file', file);  
       const response = await axios.post(`http://localhost:5000/api/v1/imagetext?language=${langSelected}`, formData, {
@@ -21,6 +23,7 @@ function ImageExtractOcr({ setOutput }) {
 
       // Handle the response
       //console.log('Text extraction response:', response.data.text);
+      toast.success('Text extracted successfully');
       setOutput(response.data.text);
     } catch (err) {
       //console.error('Error extracting text:', err);

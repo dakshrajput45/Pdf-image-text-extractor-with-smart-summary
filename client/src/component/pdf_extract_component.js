@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import pdfImage from '../assets/pdf-bg.png';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function PdfExtract({ setOutput }) {
 
@@ -11,6 +12,7 @@ function PdfExtract({ setOutput }) {
   const extractText = async (file) => {
     try {
       setLoading(true);
+      toast.info('Extracting Text');
       const formData = new FormData();
       formData.append('file', file);
       const response = await axios.post('http://localhost:5000/api/v1/pdftext', formData, {
@@ -21,6 +23,7 @@ function PdfExtract({ setOutput }) {
 
       // Handle the response
       //console.log('Text extraction response:', response.data.formattedText);
+      toast.success('Text extracted successfully');
       setOutput(response.data.formattedText);
     } catch (err) {
       //console.error('Error extracting text:', err);
