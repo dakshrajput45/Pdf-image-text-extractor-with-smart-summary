@@ -4,8 +4,9 @@ const router = express.Router();
 const {getPdfText} = require("../controller/pdf_extract_controller");
 const {getImageText} = require("../controller/ocr_image_controller");
 const {mapLanguage} = require("../middleware/language_mapping_middleware");
+const {uploadToCloudinary} = require("../middleware/file_upload_middleware");
 
-router.get("/pdftext", getPdfText);
-router.get("/imagetext", mapLanguage,getImageText);
+router.post("/pdftext",uploadToCloudinary, getPdfText);
+router.post("/imagetext",uploadToCloudinary, mapLanguage, getImageText);
 
 module.exports = router;
