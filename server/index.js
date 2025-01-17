@@ -19,12 +19,10 @@ cloudinary.cloudinaryConnect()
 
 
 // Routes
-const uploadRoute = require("./routes/upload_route");
 const extractRoute = require("./routes/extract_route");
 const summaryRoute = require("./routes/summary_route");
-app.use('/api/v1', uploadRoute);
-app.use('/api/v2', extractRoute);
-app.use('/api/v3', summaryRoute);
+app.use('/api/v1', extractRoute);
+app.use('/api/v2', summaryRoute);
 
 
 app.listen(process.env.PORT, () => {
