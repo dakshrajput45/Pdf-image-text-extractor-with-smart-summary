@@ -25,7 +25,7 @@ exports.uploadToCloudinary = async (req, res,next) => {
 
         // Delete the temporary file
         fs.unlinkSync(file.tempFilePath);
-        console.log('File uploaded to Cloudinary:', result.secure_url);
+        //console.log('File uploaded to Cloudinary:', result.secure_url);
         req.query.url = result.secure_url;
         next();
     } catch (error) {

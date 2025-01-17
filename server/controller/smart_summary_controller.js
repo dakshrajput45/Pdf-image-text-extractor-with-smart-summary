@@ -9,15 +9,12 @@ const summaryLengths = {
 
 exports.generateSummary = async (req, res) => {
     const { text, length } = req.body;
-
+    //console.log('length:', length);
     if (!text) {
         return res.status(400).json({ error: 'Text is required' });
     }
-
     const maxTokens = summaryLengths[length] || summaryLengths.medium;
-
     try {
-
         getSummary(text, maxTokens)
             .then((summary) => res.status(200).json({
                 success: true,
@@ -29,7 +26,7 @@ exports.generateSummary = async (req, res) => {
             }));
 
     } catch (error) {
-        console.error('Error generating summary:', error);
+        //console.error('Error generating summary:', error);
         res.status(500).json({ error: 'Failed to generate summary' });
     }
 };

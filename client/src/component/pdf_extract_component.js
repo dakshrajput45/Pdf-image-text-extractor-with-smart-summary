@@ -20,10 +20,10 @@ function PdfExtract({ setOutput }) {
       });
 
       // Handle the response
-      console.log('Text extraction response:', response.data.formattedText);
+      //console.log('Text extraction response:', response.data.formattedText);
       setOutput(response.data.formattedText);
     } catch (err) {
-      console.error('Error extracting text:', err);
+      //console.error('Error extracting text:', err);
     } finally {
       setLoading(false);
     }
@@ -31,7 +31,7 @@ function PdfExtract({ setOutput }) {
 
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
-    console.log('File selected:', file);
+    //console.log('File selected:', file);
     extractText(file);
   };
 
