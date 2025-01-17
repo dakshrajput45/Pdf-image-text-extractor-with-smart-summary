@@ -24,6 +24,9 @@ const summaryRoute = require("./routes/summary_route");
 app.use('/api/v1', extractRoute);
 app.use('/api/v2', summaryRoute);
 
+app.get("/", (req, res) => {
+    res.send("Welcome to the Extract and Summarize API");
+});
 
 app.listen(process.env.PORT, () => {
 	console.log(`App is running at ${process.env.PORT}`);
