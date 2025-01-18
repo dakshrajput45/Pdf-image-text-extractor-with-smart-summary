@@ -4,7 +4,8 @@ import aiIcon from '../assets/ai.png';
 import { toast } from 'react-toastify';
 
 function ExtractOutput({ output, setSummary, setLoadingSummary }) {
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api/v2';
+  
+  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api/';
   const [len, setLen] = useState('');
   const [drop, setDrop] = useState(false);
 
@@ -12,7 +13,7 @@ function ExtractOutput({ output, setSummary, setLoadingSummary }) {
     try {
       toast.info('Generating summary');
       setLoadingSummary(true);
-      const response = await axios.post(`${apiUrl}/getsummary`, {
+      const response = await axios.post(`${apiUrl}/v2/getsummary`, {
         text: output,
         length: len
       });

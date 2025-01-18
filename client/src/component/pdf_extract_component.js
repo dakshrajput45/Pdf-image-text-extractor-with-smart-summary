@@ -6,22 +6,22 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 function PdfExtract({ setOutput }) {
-
+  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
   const [loading, setLoading] = useState(false);
 
   const extractText = async (file) => {
     try {
       setLoading(true);
       toast.info('Extracting Text');
+
       const formData = new FormData();
       formData.append('file', file);
-      const response = await axios.post('http://localhost:5000/api/v1/pdftext', formData, {
+      const response = await axios.post(`${apiUrl}/v1/pdftext`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
-      // Handle the response
       //console.log('Text extraction response:', response.data.formattedText);
       toast.success('Text extracted successfully');
       setOutput(response.data.formattedText);
@@ -41,11 +41,13 @@ function PdfExtract({ setOutput }) {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: '.pdf', // Restrict file selection to PDFs only
+    accept: {
+      'application/pdf': ['.pdf']
+    },
   });
 
   return (
-    <div className="flex xl:mr-0 mr-2 border-2 border-gray-500 h-52 md:h-full w-full justify-center items-center bg-white">
+    <div className="flex mr-2 border-2 border-gray-500 h-52 md:h-1/2 w-1/2 md:w-full justify-center items-center bg-white md:mb-2">
       <button
         {...getRootProps()} 
         className="flex flex-col justify-center items-center max-w-full max-h-full text-center p-6"
@@ -59,7 +61,7 @@ function PdfExtract({ setOutput }) {
           alt="img"
           className="max-w-xs max-h-20 object-contain mb-2"
         />
-        <div className='border-2 rounded-lg md:px-5 px-1 py-1 border-black mb-2'>{!loading ? <p>Extract Pdf Text</p> : <p>Extracting...</p>}</div>
+        <div className='border-2 rounded-lg md:px-5 px-1 py-1 border-black mb-2 '>{!loading ? <p>Extract Pdf Text</p> : <p>Extracting...</p>}</div>
         <h1 className="text-sm font-normal hidden md:block">
           Drag And Drop or Click To Select Pdf And Extract Text With Exact Formatting
         </h1>
