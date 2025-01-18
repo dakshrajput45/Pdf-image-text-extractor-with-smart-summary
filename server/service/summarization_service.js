@@ -1,15 +1,15 @@
 const { HfInference } = require('@huggingface/inference');
 require('dotenv').config();
 
-const hf = new HfInference(process.env.HF_API_KEY); // Ensure you set HF_API_KEY in your .env file
+const hf = new HfInference(process.env.HF_API_KEY);
 
 exports.getSummary = async (text, length) => {
     try {
         const response = await hf.summarization({
-            model: 'google/pegasus-xsum',
+            model: 'google/pegasus-cnn_dailymail',
             inputs: text,
             parameters: {
-                max_length: length + 50, // Add buffer to max length
+                max_length: length + 50,
                 min_length: length,
             },
         });

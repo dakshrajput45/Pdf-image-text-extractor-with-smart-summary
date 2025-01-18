@@ -3,12 +3,11 @@ import Loader from '../assets/loader';
 
 function SmartSummary({ summary, loadingSummary }) {
   return (
-    <div className='flex flex-col w-full h-full overflow-auto p-4 border-2 border-gray-300 shadow-md bg-gray-100'>
-      <h1 className='text-center text-2xl font-semibold mt-2 mb-4 bg-white p-4'>Smart Summary</h1>
-
+    <div className='flex flex-col mt-2 md:mt-0 xl:mt-2 w-full max-w-screen-lg md:h-full overflow-auto p-4 border-2 border-gray-500 shadow-md bg-white mx-auto'>
+      <h1 className='text-center text-xl md:text-2xl font-semibold mt-2 md:mb-4 bg-gray-200 p-4'>Smart Summary</h1>
       {summary && !loadingSummary ? (
-        <div className='text-balance text-black mt-10'>
-          <pre className='whitespace-pre-wrap p-4 bg-white'>{summary}</pre>
+        <div className='flex text-black mt-10 max-w-full'>
+          <pre className='whitespace-pre-wrap break-words bg-white w-full'>{summary}</pre>
         </div>
       ) : (
         <div className='flex justify-center items-center w-full h-full'>

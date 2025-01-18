@@ -14,18 +14,18 @@ function ImageExtractOcr({ setOutput }) {
       setLoading(true);
       toast.info('Extracting Text');
       const formData = new FormData();
-      formData.append('file', file);  
+      formData.append('file', file);
       const response = await axios.post(`http://localhost:5000/api/v1/imagetext?language=${langSelected}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
-      // Handle the response
       //console.log('Text extraction response:', response.data.text);
       toast.success('Text extracted successfully');
       setOutput(response.data.text);
     } catch (err) {
+      toast.error('Failed to extract text');
       //console.error('Error extracting text:', err);
     } finally {
       setLoading(false);
@@ -44,8 +44,8 @@ function ImageExtractOcr({ setOutput }) {
   });
 
   return (
-    <div className="flex flex-col border-2 border-gray-500 h-1/2 bg-white">
-      <div className="flex items-end justify-end mt-2 mr-2 ">
+    <div className="flex flex-col border-2 border-gray-500 h-52 md:h-full w-full bg-white xl:mt-2">
+      <div className="flex items-end justify-end mt-2 mr-2">
         <select
           value={langSelected}
           onChange={(e) => setLangSelected(e.target.value)}
@@ -58,24 +58,26 @@ function ImageExtractOcr({ setOutput }) {
           }
         </select>
       </div>
-      <button
-        {...getRootProps()}
-        className="flex flex-col justify-center items-center max-w-full max-h-full text-center p-6"
-      >
-        <input
-          {...getInputProps()}
-          accept="image/*"
-        />
-        <img
-          src={img}
-          alt="img"
-          className="max-w-xs max-h-20 object-contain mb-2"
-        />
-        <div className='border-2 rounded-lg px-5 py-1 border-black mb-2'>{!loading ? <p>Extract Pdf Text</p> : <p>Extracting...</p>}</div>
-        <h1 className="text-sm font-normal">
-          Drag And Drop or Click To Select Image And Language To Extract Text
-        </h1>
-      </button>
+      <div className='flex justify-center items-center h-full w-full'>
+        <button
+          {...getRootProps()}
+          className="flex flex-col justify-center items-center max-w-full max-h-full text-center p-6"
+        >
+          <input
+            {...getInputProps()}
+            accept="image/*"
+          />
+          <img
+            src={img}
+            alt="img"
+            className="max-w-xs max-h-16 object-contain mb-2"
+          />
+          <div className='border-2 rounded-lg md:px-5 px-1 py-1 border-black mb-2'>{!loading ? <p>Extract Pdf Text</p> : <p>Extracting...</p>}</div>
+          <h1 className="text-sm font-normal hidden md:block">
+            Drag And Drop or Click To Select Image And Language To Extract Text
+          </h1>
+        </button>
+      </div>
     </div>
   );
 }

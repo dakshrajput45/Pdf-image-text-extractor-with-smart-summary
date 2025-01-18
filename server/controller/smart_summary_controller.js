@@ -24,9 +24,8 @@ exports.generateSummary = async (req, res) => {
                 success: false,
                 error: error.message,
             }));
-
     } catch (error) {
-        //console.error('Error generating summary:', error);
+        console.error('Error generating summary: controller', error);
         res.status(500).json({ error: 'Failed to generate summary' });
     }
 };

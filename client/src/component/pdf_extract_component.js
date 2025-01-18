@@ -26,6 +26,7 @@ function PdfExtract({ setOutput }) {
       toast.success('Text extracted successfully');
       setOutput(response.data.formattedText);
     } catch (err) {
+      toast.error('Failed to extract text');
       //console.error('Error extracting text:', err);
     } finally {
       setLoading(false);
@@ -44,7 +45,7 @@ function PdfExtract({ setOutput }) {
   });
 
   return (
-    <div className="flex border-2 border-gray-500 h-1/2 justify-center items-center bg-white">
+    <div className="flex xl:mr-0 mr-2 border-2 border-gray-500 h-52 md:h-full w-full justify-center items-center bg-white">
       <button
         {...getRootProps()} 
         className="flex flex-col justify-center items-center max-w-full max-h-full text-center p-6"
@@ -56,10 +57,10 @@ function PdfExtract({ setOutput }) {
         <img
           src={pdfImage}
           alt="img"
-          className="max-w-xs max-h-24 object-contain mb-2"
+          className="max-w-xs max-h-20 object-contain mb-2"
         />
-        <div className='border-2 rounded-lg px-5 py-1 border-black mb-2'>{!loading ? <p>Extract Pdf Text</p> : <p>Extracting...</p>}</div>
-        <h1 className="text-sm font-normal">
+        <div className='border-2 rounded-lg md:px-5 px-1 py-1 border-black mb-2'>{!loading ? <p>Extract Pdf Text</p> : <p>Extracting...</p>}</div>
+        <h1 className="text-sm font-normal hidden md:block">
           Drag And Drop or Click To Select Pdf And Extract Text With Exact Formatting
         </h1>
       </button>
