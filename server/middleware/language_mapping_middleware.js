@@ -9,6 +9,7 @@ const languageMapping = {
 
 exports.mapLanguage = (req, res, next) => {
     const { language } = req.query;
+    console.log(language);
 
     if (!language) {
         return res.status(400).json({ error: 'Language is required' });

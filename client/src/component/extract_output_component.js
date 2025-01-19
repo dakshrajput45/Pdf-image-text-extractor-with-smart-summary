@@ -7,7 +7,7 @@ import { AppContext } from '../context/appContext';
 
 function ExtractOutput() {
 
-  const { output, setSummary, setLoadingSummary, loadingPdf, loadingImg,apiUrl } = useContext(AppContext);
+  const { output, setSummary, setLoadingSummary, loadingPdf, loadingImg, apiUrl, langSelected } = useContext(AppContext);
 
   const [len, setLen] = useState('');
   const [drop, setDrop] = useState(false);
@@ -38,10 +38,10 @@ function ExtractOutput() {
   };
 
   useEffect(() => {
-    if (output && len) {
+    if (output && len ) {
       genrateSmartSummary();
       setDrop(false);
-    }
+    } 
   }, [output, len]);
 
   return (
@@ -84,7 +84,12 @@ function ExtractOutput() {
                   <button
                     onClick={() => {
                       setDrop(true);
-                      genrateSmartSummary();
+                      if (langSelected === 'english')
+                        genrateSmartSummary();
+                      else {
+                        toast.error("Language Should Be English For Summary");
+                        setDrop(false);
+                      }
                     }}
                     className="animate-pulse-size transform transition-all hover:rotate-12 duaration-300 ease-in-out hover:scale-110 relative border-2 rounded-full p-1 border-black justify-end items-end bg-white group"
                   >

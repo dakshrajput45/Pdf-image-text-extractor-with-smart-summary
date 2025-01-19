@@ -6,6 +6,7 @@ const axios = require('axios');
 exports.getImageText = async (req, res) => {
     const { url} = req.query;
     const langCode = req.langCode;
+    console.log(langCode);
 
     try {
         // Fetch the image from the URL

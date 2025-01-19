@@ -7,17 +7,17 @@ import { toast } from 'react-toastify';
 import { AppContext } from '../context/appContext';
 
 function ImageExtractOcr() {
-  const { setloadingImg, langSelected, setLangSelected, loadingImg, apiUrl,setOutput } = useContext(AppContext);
+  const { setLoadingImg, langSelected, setLangSelected, loadingImg, apiUrl,setOutput } = useContext(AppContext);
 
   const extractText = async (file) => {
     try {
-      setloadingImg(true);
+      setLoadingImg(true);
       toast.info('Extracting Text');
 
       const formData = new FormData();
       formData.append('file', file);
       formData.append('language', langSelected);
-      const response = await axios.post(`${apiUrl}/api/v1/imagetext`, formData, {
+      const response = await axios.post(`${apiUrl}/api/v1/imagetext?language=${langSelected}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -25,20 +25,20 @@ function ImageExtractOcr() {
 
       // Handle the response
       toast.success('Text extracted successfully');
-      console.log('Text extraction response:', response.data.formattedText);
-      setOutput(response.data.formattedText);
+      //console.log('Text extraction response:', response.data.text);
+      setOutput(response.data.text);
     } catch (err) {
       toast.error('Failed to extract text');
       console.error('Error extracting text:', err);
     } finally {
-      setloadingImg(false);
+      setLoadingImg(false);
     }
   };
 
   const onDrop = (acceptedFiles) => {
     if (acceptedFiles.length > 0) {
       const file = acceptedFiles[0];
-      console.log('File selected:', file);
+      //console.log('File selected:', file);
       extractText(file);
     }
   };
@@ -59,7 +59,7 @@ function ImageExtractOcr() {
         <select
           value={langSelected}
           onChange={(e) => setLangSelected(e.target.value)}
-          className="border-2 border-gray-300 rounded-lg p-2"
+          className="border-2 border-gray-300 rounded-lg p-2 capitalize"
         >
           {
             langData.map((lang, index) => (
