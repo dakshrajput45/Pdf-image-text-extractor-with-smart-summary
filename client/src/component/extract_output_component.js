@@ -40,6 +40,7 @@ function ExtractOutput() {
   useEffect(() => {
     if (output && len) {
       genrateSmartSummary();
+      setDrop(false);
     }
   }, [output, len]);
 
@@ -72,7 +73,6 @@ function ExtractOutput() {
                     onChange={(e) => {
                       const newLen = e.target.value;
                       setLen(newLen);
-                      setDrop(false);
                     }}
                     className='border-2 border-gray-300 rounded-lg p-2 capitalize'
                   >

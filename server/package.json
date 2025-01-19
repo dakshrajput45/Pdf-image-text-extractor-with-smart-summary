@@ -12,7 +12,6 @@
   "description": "",
   "dependencies": {
     "@huggingface/inference": "^2.8.1",
-    "@huggingface/transformers": "^3.2.4",
     "axios": "^1.7.9",
     "cloudinary": "^2.5.1",
     "cors": "^2.8.5",
@@ -23,7 +22,6 @@
     "nodemon": "^3.1.9",
     "pdf-lib": "^1.17.1",
     "pdf-parse": "^1.1.1",
-    "tesseract.js": "^6.0.0",
-    "torch": "^0.2.7"
+    "tesseract.js": "^6.0.0"
   }
 }
