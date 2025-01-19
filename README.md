@@ -12,6 +12,7 @@ I chose React.js for its flexibility and Tailwind CSS for its utility-first appr
 On the backend, Cloudinary handled file uploads, and PDF-parse and Tesseract.js were used for text extraction and OCR. For smart summaries, I utilized the Google/pegasus-cnn_dailymail for smart summarization.
 
 However, the journey has its hurdles. Working with third-party APIs for smart summarization was a challenge. Each API came with its own set of limitations. But i took the time to research through documentation ,Stack Overflow and testing various solutions. One key challenge was selecting the right model for summarization, where I sifted through multiple options before settling on Google/pegasus-cnn_dailymail for its ability to handle both short and long documents effectively. 
+
 Despite these challenges, I tackled each one through careful research, ensuring that the app remains scalable and maintainable.
 
 ## Running the Web App
