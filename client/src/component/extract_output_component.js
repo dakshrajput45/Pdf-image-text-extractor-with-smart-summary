@@ -7,9 +7,8 @@ import { AppContext } from '../context/appContext';
 
 function ExtractOutput() {
 
-  const { output, setSummary, setLoadingSummary, loadingPdf, loadingImg } = useContext(AppContext);
+  const { output, setSummary, setLoadingSummary, loadingPdf, loadingImg,apiUrl } = useContext(AppContext);
 
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
   const [len, setLen] = useState('');
   const [drop, setDrop] = useState(false);
 
