@@ -8,13 +8,13 @@ import SmartSummary from './component/smart_summary_component';
 function App() {
   const {loadingSummary,summary} = useContext(AppContext);
   return (
-    <div className="flex flex-col justify-between h-screen">
+    <div className="flex flex-col justify-between h-screen m-2">
       <div className='flex items-center text-center justify-center w-full border-2 my-4 py-4' style={{ backgroundColor: 'rgb(102, 180, 110)' }}>
         <h1 className='text-xl font-medium uppercase text-white' >
           Unthinkable Solutions Test App
         </h1>
       </div>
-      <div className="flex flex-col md:flex-row md:justify-between h-screen m-4">
+      <div className="flex flex-col md:flex-row md:justify-between h-screen m-1 md:m-4">
         <div className='flex flex-row md:flex-col justify-between w-full md:w-1/3 md:h-full md:mr-2 mb-2'>
           <PdfExtract />
           <ImageExtractOcr />

@@ -46,7 +46,7 @@ function ExtractOutput() {
 
   return (
     <div className='flex flex-col mt-2 md:mt-0 w-full xl:max-w-screen-lg h-full overflow-auto p-4 border-2 border-gray-500 shadow-md bg-white mx-auto'>
-      <h1 className='text-center text-xl md:text-2xl font-semibold mt-2 md:mb-4 bg-gray-200 p-4'>
+      <h1 className='text-center text-xl md:text-2xl font-semibold mt-2 mb-4 bg-gray-200 p-4'>
         Extract Output Component
       </h1>
       {

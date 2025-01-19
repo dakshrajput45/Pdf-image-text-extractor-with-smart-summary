@@ -54,7 +54,7 @@ function ImageExtractOcr() {
   });
 
   return (
-    <div className="flex flex-col border-2 border-gray-500 h-52 w-1/2 md:w-full md:h-1/2 bg-white">
+    <div className="flex flex-col border-2 border-gray-500 h-full w-1/2 md:w-full md:h-1/2 bg-white">
       <div className="flex items-end justify-end mt-2 mr-2 ">
         <select
           value={langSelected}
@@ -81,7 +81,7 @@ function ImageExtractOcr() {
           alt="img"
           className="max-w-xs max-h-16 object-contain mb-2"
         />
-        <div className='border-2 rounded-lg md:px-5 px-1 py-1 border-black mb-2 '>{!loadingImg ? <p>Extract Img Text</p> : <p>Extracting...</p>}</div>
+        <div className='border-2 rounded-lg md:px-5 px-1 py-1 border-black'>{!loadingImg ? <p>Extract Img Text</p> : <p>Extracting...</p>}</div>
         <h1 className="text-sm font-normal hidden md:block">
           Drag And Drop or Click To Select Image And Extract Text With Exact Formatting
         </h1>
