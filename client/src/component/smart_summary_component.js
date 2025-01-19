@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Loader from '../assets/loader';
+import { AppContext } from '../context/appContext';
 
-function SmartSummary({ summary, loadingSummary }) {
+function SmartSummary() {
+  const {summary,loadingSummary} = useContext(AppContext);
   return (
     <div className='flex flex-col mt-2 w-full max-w-screen-lg md:h-full overflow-auto p-4 border-2 border-gray-500 shadow-md bg-white mx-auto'>
       <h1 className='text-center text-xl md:text-2xl font-semibold mt-2 md:mb-4 bg-gray-200 p-4'>Smart Summary</h1>

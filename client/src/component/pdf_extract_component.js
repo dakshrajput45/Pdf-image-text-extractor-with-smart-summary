@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import pdfImage from '../assets/pdf-bg.png';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { AppContext } from '../context/appContext';
 
-function PdfExtract({ setOutput }) {
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
-  const [loading, setLoading] = useState(false);
+function PdfExtract() {
+ 
+  const {apiUrl,loadingPdf, setLoadingPdf,setOutput} = useContext(AppContext);
 
   const extractText = async (file) => {
     try {
-      setLoading(true);
+      setLoadingPdf(true);
       toast.info('Extracting Text');
 
       const formData = new FormData();
       formData.append('file', file);
-      const response = await axios.post(`${apiUrl}/v1/pdftext`, formData, {
+      const response = await axios.post(`${apiUrl}/api/v1/pdftext`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -27,9 +28,9 @@ function PdfExtract({ setOutput }) {
       setOutput(response.data.formattedText);
     } catch (err) {
       toast.error('Failed to extract text');
-      //console.error('Error extracting text:', err);
+      console.error('Error extracting text:', err);
     } finally {
-      setLoading(false);
+      setLoadingPdf(false);
     }
   };
 
@@ -61,7 +62,7 @@ function PdfExtract({ setOutput }) {
           alt="img"
           className="max-w-xs max-h-20 object-contain mb-2"
         />
-        <div className='border-2 rounded-lg md:px-5 px-1 py-1 border-black mb-2 '>{!loading ? <p>Extract Pdf Text</p> : <p>Extracting...</p>}</div>
+        <div className='border-2 rounded-lg md:px-5 px-1 py-1 border-black mb-2 '>{!loadingPdf ? <p>Extract Pdf Text</p> : <p>Extracting...</p>}</div>
         <h1 className="text-sm font-normal hidden md:block">
           Drag And Drop or Click To Select Pdf And Extract Text With Exact Formatting
         </h1>

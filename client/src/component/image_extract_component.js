@@ -1,32 +1,37 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import img from '../assets/img.jpeg';
 import langData from '../data/language_data';
+import { toast } from 'react-toastify';
+import { AppContext } from '../context/appContext';
 
-function ImageExtractOcr({ setOutput }) {
-  const [loading, setLoading] = useState(false);
-  const [langSelected, setLangSelected] = useState('eng');
+function ImageExtractOcr() {
+  const { setloadingImg, langSelected, setLangSelected, loadingImg, apiUrl,setOutput } = useContext(AppContext);
 
   const extractText = async (file) => {
     try {
-      setLoading(true);
+      setloadingImg(true);
+      toast.info('Extracting Text');
+
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('language', langSelected);  
-      const response = await axios.post('http://localhost:5000/api/v1/imagetext', formData, {
+      formData.append('language', langSelected);
+      const response = await axios.post(`${apiUrl}/api/v1/imagetext`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
       // Handle the response
+      toast.success('Text extracted successfully');
       console.log('Text extraction response:', response.data.formattedText);
       setOutput(response.data.formattedText);
     } catch (err) {
+      toast.error('Failed to extract text');
       console.error('Error extracting text:', err);
     } finally {
-      setLoading(false);
+      setloadingImg(false);
     }
   };
 
@@ -76,7 +81,7 @@ function ImageExtractOcr({ setOutput }) {
           alt="img"
           className="max-w-xs max-h-16 object-contain mb-2"
         />
-        <div className='border-2 rounded-lg md:px-5 px-1 py-1 border-black mb-2 '>{!loading ? <p>Extract Img Text</p> : <p>Extracting...</p>}</div>
+        <div className='border-2 rounded-lg md:px-5 px-1 py-1 border-black mb-2 '>{!loadingImg ? <p>Extract Img Text</p> : <p>Extracting...</p>}</div>
         <h1 className="text-sm font-normal hidden md:block">
           Drag And Drop or Click To Select Image And Extract Text With Exact Formatting
         </h1>

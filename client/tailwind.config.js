@@ -10,11 +10,17 @@ module.exports = {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },
         },
+        'pulse-size': {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.1)' },
+          '100%': { transform: 'scale(1)' },
+        }
       },
       animation: {
         spin: 'spin 1s linear infinite',
+        'pulse-size': 'pulse-size 2s ease-in-out infinite',
       },
     },
-  },
-  plugins: [],
+    plugins: [],
+  }
 }
