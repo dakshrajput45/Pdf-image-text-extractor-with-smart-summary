@@ -5,7 +5,7 @@ This web application allows users to extract text from PDF files and images, and
 
 ## Approach
 
-For the initial setup, my priority was creating a clean, codebase. I focused on structuring the project with clear separations —frontend components, Context, and assets were well-organized, while the backend had separate folders for routes, controllers, service and middlewares. This allowed for easy scaling and easier debugging.
+For the initial setup, my priority was creating a clean codebase. I focused on structuring the project with clear separations —frontend components, Context, and assets were well-organized, while the backend had separate folders for routes, controllers, service and middlewares. This allowed for easy scaling and easier debugging.
 
 I chose React.js for its flexibility and Tailwind CSS for its utility-first approach. For the drag-and-drop feature, I integrated React Dropzone, and used React Context API for state management to keep the code scalable.
 
