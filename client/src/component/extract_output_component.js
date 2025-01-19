@@ -50,8 +50,9 @@ function ExtractOutput() {
       </h1>
       {
         loadingPdf || loadingImg ? (
-          <div className='flex justify-center items-center w-full h-full'>
+          <div className='flex flex-col justify-center items-center w-full h-full'>
             <Loader />
+            Please wait for a while !!
           </div>
         ) : (
           <>

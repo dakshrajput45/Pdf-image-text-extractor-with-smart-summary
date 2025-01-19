@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import pdfImage from '../assets/pdf-bg.png';
 import axios from 'axios';

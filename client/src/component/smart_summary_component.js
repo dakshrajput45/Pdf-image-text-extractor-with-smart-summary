@@ -12,8 +12,9 @@ function SmartSummary() {
           <pre className='whitespace-pre-wrap break-words bg-white w-full'>{summary}</pre>
         </div>
       ) : (
-        <div className='flex justify-center items-center w-full h-full'>
+        <div className='flex flex-col justify-center items-center w-full h-full'>
           <Loader />
+          Please wait for a while !!
         </div>
       )}
     </div>

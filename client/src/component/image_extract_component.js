@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext} from 'react';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import img from '../assets/img.jpeg';
