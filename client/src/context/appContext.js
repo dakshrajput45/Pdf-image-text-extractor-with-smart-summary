@@ -3,7 +3,7 @@ import { createContext,useState } from "react";
 export const AppContext = createContext();
 
 export function AppContextProvider({children}) {
-    const apiUrl = 'http://localhost:5000';
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
     const [loadingPdf ,setLoadingPdf] = useState(false);
     const [output, setOutput] = useState('');
     const [summary, setSummary] = useState('');
