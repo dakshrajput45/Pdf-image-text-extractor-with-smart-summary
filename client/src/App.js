@@ -14,7 +14,7 @@ function App() {
           Unthinkable Solutions Test App
         </h1>
       </div>
-      <div className="flex flex-col md:flex-row md:justify-between h-screen m-1 md:m-4">
+      <div className="flex flex-col md:flex-row md:justify-between h-full m-2 md:m-4">
         <div className='flex flex-row md:flex-col justify-between w-full md:w-1/3 md:h-full md:mr-2 mb-2'>
           <PdfExtract />
           <ImageExtractOcr />
